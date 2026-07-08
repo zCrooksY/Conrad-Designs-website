@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Conrad Designs &amp; Property Maintenance — Kitchen &amp; Bathroom Specialists, Oxfordshire</title>
+<meta name="description" content="Conrad Designs and Property Maintenance — bespoke kitchen and bathroom design and fitting across Oxfordshire. Considered craftsmanship from first drawing to final finish." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root{
+    --paper:#F4F2ED;        /* warm off-white ground */
+    --surface:#FBFAF7;      /* lifted surface */
+    --ink:#1B1A17;          /* off-black */
+    --ink-soft:#3A3833;
+    --muted:#76726A;        /* secondary text */
+    --line:rgba(27,26,23,0.12);
+    --line-soft:rgba(27,26,23,0.07);
+    --accent:#9B7B53;       /* muted bronze — nods to brass fittings */
+    --accent-deep:#7E613E;
+    --max:1320px;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:400;line-height:1.04;letter-spacing:-0.01em}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:'Outfit',sans-serif;font-weight:500;
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent-deep);
+  }
+  .lead{color:var(--muted);max-width:60ch;font-size:1.05rem}
+
+  /* subtle film grain for depth */
+  .grain{
+    position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ============ NAV ============ */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .5s var(--ease),border-color .5s var(--ease),backdrop-filter .5s}
+  header.scrolled{background:rgba(244,242,237,.78);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line-soft)}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;max-width:var(--max);margin:0 auto}
+  .brand{display:flex;flex-direction:column;line-height:1.05}
+  .brand b{font-family:'Fraunces',serif;font-weight:500;font-size:1.18rem;letter-spacing:-.01em}
+  .brand span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-top:3px}
+  .navlinks{display:flex;align-items:center;gap:38px}
+  .navlinks a.lnk{font-size:.9rem;color:var(--ink-soft);position:relative;transition:color .3s}
+  .navlinks a.lnk::after{content:'';position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--accent);transition:width .4s var(--ease)}
+  .navlinks a.lnk:hover{color:var(--ink)}
+  .navlinks a.lnk:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Outfit',sans-serif;font-weight:500;font-size:.9rem;
+    padding:13px 24px;border-radius:100px;border:1px solid var(--ink);
+    background:var(--ink);color:var(--paper);
+    transition:transform .35s var(--ease),background .35s,color .35s,box-shadow .35s;
+  }
+  .btn:hover{background:transparent;color:var(--ink);box-shadow:0 14px 30px -16px rgba(27,26,23,.5)}
+  .btn:active{transform:translateY(1px) scale(.985)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .menu-toggle{display:none;background:none;border:0;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+  .menu-toggle span{width:24px;height:1.5px;background:var(--ink);transition:.3s var(--ease)}
+
+  /* ============ HERO ============ */
+  .hero{padding:160px 0 90px;min-height:100dvh;display:flex;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;width:100%}
+  .hero h1{font-size:clamp(2.9rem,6.2vw,5.4rem);margin:26px 0 28px}
+  .hero h1 em{font-style:italic;color:var(--accent-deep)}
+  .hero-cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:40px;margin-top:54px;padding-top:30px;border-top:1px solid var(--line)}
+  .hero-meta div .n{font-family:'Fraunces',serif;font-size:1.9rem;color:var(--ink)}
+  .hero-meta div .l{font-size:.78rem;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+  .hero-visual{position:relative}
+  .hero-visual .frame{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 40px 80px -40px rgba(27,26,23,.45)}
+  .hero-visual .frame img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) contrast(1.02)}
+  .hero-visual .tag{
+    position:absolute;left:-26px;bottom:38px;background:var(--surface);
+    padding:18px 22px;border-radius:4px;border:1px solid var(--line);
+    box-shadow:0 24px 50px -28px rgba(27,26,23,.4);max-width:210px;
+  }
+  .hero-visual .tag .t{font-family:'Fraunces',serif;font-size:1.02rem;line-height:1.2}
+  .hero-visual .tag .s{font-size:.76rem;color:var(--muted);margin-top:5px}
+
+  /* ============ MARQUEE ============ */
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;background:var(--surface)}
+  .marquee-track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:slide 38s linear infinite}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee-track span{font-family:'Fraunces',serif;font-style:italic;font-size:1.35rem;color:var(--ink-soft);padding:0 34px;display:inline-flex;align-items:center}
+  .marquee-track span::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:34px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ============ SECTION SHELL ============ */
+  section{padding:120px 0}
+  .sec-head{display:grid;grid-template-columns:.4fr .6fr;gap:40px;align-items:end;margin-bottom:64px}
+  .sec-head h2{font-size:clamp(2.1rem,4vw,3.4rem)}
+  @media(max-width:860px){.sec-head{grid-template-columns:1fr;gap:18px;align-items:start}}
+
+  /* ============ SERVICES (editorial rows) ============ */
+  .svc-row{
+    display:grid;grid-template-columns:80px 1fr 1.1fr;gap:40px;align-items:center;
+    padding:46px 0;border-top:1px solid var(--line);transition:padding .4s var(--ease)
+  }
+  .svc-row:last-child{border-bottom:1px solid var(--line)}
+  .svc-row .num{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--accent-deep)}
+  .svc-row h3{font-size:clamp(1.7rem,2.8vw,2.5rem)}
+  .svc-row .desc{color:var(--muted);max-width:46ch}
+  .svc-row .desc ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .svc-row .desc ul li{font-size:.8rem;color:var(--ink-soft);border:1px solid var(--line);padding:5px 13px;border-radius:100px}
+  .svc-row:hover{padding-left:14px}
+  .svc-row:hover h3{color:var(--accent-deep)}
+
+  /* ============ WORK GALLERY ============ */
+  .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;grid-auto-flow:dense}
+  .shot{position:relative;overflow:hidden;border-radius:5px;background:#ddd}
+  .shot img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease),filter .6s;filter:saturate(.92)}
+  .shot:hover img{transform:scale(1.06)}
+  .shot .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:22px;
+    background:linear-gradient(to top,rgba(20,19,16,.82),transparent);
+    color:#F4F2ED;transform:translateY(8px);opacity:0;transition:.45s var(--ease)
+  }
+  .shot:hover .cap{transform:translateY(0);opacity:1}
+  .shot .cap .t{font-family:'Fraunces',serif;font-size:1.15rem}
+  .shot .cap .s{font-size:.78rem;opacity:.8;letter-spacing:.04em;text-transform:uppercase;margin-top:3px}
+  .shot.lg{grid-column:span 7;aspect-ratio:16/12}
+  .shot.sm{grid-column:span 5;aspect-ratio:4/5}
+  .shot.md{grid-column:span 6;aspect-ratio:3/2}
+  .shot.tall{grid-column:span 5;aspect-ratio:3/4}
+  .shot.wide{grid-column:span 7;aspect-ratio:16/10}
+
+  /* ============ BEFORE / AFTER ============ */
+  .ba-wrap{display:grid;grid-template-columns:.42fr .58fr;gap:56px;align-items:center}
+  .ba{position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;user-select:none;box-shadow:0 40px 80px -46px rgba(27,26,23,.5);cursor:ew-resize}
+  .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .ba .after{clip-path:inset(0 0 0 50%);}
+  .ba .divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#F4F2ED;transform:translateX(-1px);box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+  .ba .handle{
+    position:absolute;top:50%;left:50%;width:46px;height:46px;border-radius:50%;
+    background:#F4F2ED;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px -6px rgba(27,26,23,.5);color:var(--ink)
+  }
+  .ba .lbl{position:absolute;bottom:16px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(20,19,16,.5);backdrop-filter:blur(6px);padding:6px 12px;border-radius:100px}
+  .ba .lbl.b{left:16px}
+  .ba .lbl.a{right:16px}
+
+  /* ============ ABOUT ============ */
+  .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
+  .about-grid .portrait{aspect-ratio:4/5;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -46px rgba(27,26,23,.45)}
+  .about-grid .portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+  .about-grid h2{font-size:clamp(2rem,3.6vw,3rem);margin:18px 0 24px}
+  .about-grid p+p{margin-top:18px}
+  .sig{font-family:'Fraunces',serif;font-style:italic;font-size:1.5rem;color:var(--ink);margin-top:30px}
+  .sig small{display:block;font-family:'Outfit',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  /* ============ PROCESS ============ */
+  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .step{padding:36px 28px 36px 0;border-top:2px solid var(--ink)}
+  .step .num{font-family:'Fraunces',serif;font-size:.95rem;color:var(--accent-deep);letter-spacing:.04em}
+  .step h4{font-size:1.4rem;margin:14px 0 10px}
+  .step p{font-size:.92rem;color:var(--muted)}
+
+  /* ============ CONTACT ============ */
+  .contact{background:var(--ink);color:var(--paper);border-radius:10px;padding:84px;position:relative;overflow:hidden}
+  .contact::before{content:'';position:absolute;top:-30%;right:-10%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(155,123,83,.28),transparent 65%);pointer-events:none}
+  .contact .eyebrow{color:#C9A877}
+  .contact h2{font-size:clamp(2.4rem,5vw,4rem);margin:22px 0 18px;color:var(--paper)}
+  .contact p.lead{color:rgba(244,242,237,.66);max-width:52ch}
+  .contact-rows{margin-top:52px;border-top:1px solid rgba(244,242,237,.16)}
+  .crow{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 0;border-bottom:1px solid rgba(244,242,237,.16);transition:padding .4s var(--ease)}
+  .crow:hover{padding-left:12px}
+  .crow .k{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,242,237,.5)}
+  .crow .v{font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.6vw,2rem);transition:color .3s}
+  .crow:hover .v{color:#C9A877}
+  .crow .arrow{margin-left:auto;color:rgba(244,242,237,.4);transition:transform .4s var(--ease),color .3s}
+  .crow:hover .arrow{transform:translateX(6px);color:#C9A877}
+
+  /* ============ FOOTER ============ */
+  footer{padding:60px 0 40px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:34px;border-top:1px solid var(--line)}
+  .foot .small{font-size:.82rem;color:var(--muted)}
+
+  /* ============ REVEAL ANIM ============ */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.marquee-track{animation:none}}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:48px}
+    .hero-visual{order:-1;max-width:460px}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .about-grid .portrait{max-width:420px}
+    .ba-wrap{grid-template-columns:1fr;gap:34px}
+    .process{grid-template-columns:1fr 1fr}
+    .svc-row{grid-template-columns:50px 1fr;gap:20px}
+    .svc-row .desc{grid-column:1/-1}
+    .contact{padding:56px 34px}
+  }
+  @media(max-width:720px){
+    .wrap{padding:0 22px}
+    nav{padding:18px 22px}
+    .navlinks{position:fixed;inset:0;background:var(--paper);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:40}
+    .navlinks.open{transform:none}
+    .navlinks a.lnk{font-size:1.4rem;font-family:'Fraunces',serif}
+    .menu-toggle{display:flex;z-index:45}
+    .menu-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .menu-toggle.open span:nth-child(2){opacity:0}
+    .menu-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    section{padding:84px 0}
+    .gallery{grid-template-columns:1fr}
+    .shot.lg,.shot.sm,.shot.md,.shot.tall,.shot.wide{grid-column:1/-1;aspect-ratio:4/3}
+    .process{grid-template-columns:1fr}
+    .hero-meta{gap:26px}
+    .hero-visual .tag{left:0}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- ============ NAV ============ -->
+<header id="top">
+  <nav>
+    <a href="#top" class="brand">
+      <b>Conrad Designs</b>
+      <span>&amp; Property Maintenance</span>
+    </a>
+    <div class="navlinks" id="navlinks">
+      <a href="#work" class="lnk">Work</a>
+      <a href="#services" class="lnk">Services</a>
+      <a href="#about" class="lnk">About</a>
+      <a href="#contact" class="btn ghost">Get in touch</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Kitchen &amp; Bathroom Specialists · Oxfordshire</p>
+      <h1>Kitchens &amp; bathrooms,<br>fitted with <em>intent.</em></h1>
+      <p class="lead">Design-led kitchen and bathroom installation for homes across Oxfordshire — from the first measured drawing to the final sealed edge. Honest craft, clean lines, and a finish that lasts.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn">View the work
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="tel:+447979822085" class="btn ghost">Call 07979 822085</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="n">Oxfordshire</div><div class="l">Where I work</div></div>
+        <div><div class="n">Kitchens</div><div class="l">&amp; Bathrooms</div></div>
+        <div><div class="n">End&nbsp;to&nbsp;end</div><div class="l">Design to fit</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="frame">
+        <img src="images/hero-kitchen.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/conrad-kitchen-hero/900/1125'" alt="A finished bespoke kitchen with stone worktops and warm timber cabinetry" />
+      </div>
+      <div class="tag">
+        <div class="t">Bespoke fitting</div>
+        <div class="s">Measured, made and installed to the millimetre.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Bespoke joinery</span><span>Tiling &amp; stone</span><span>Plumbing</span><span>Lighting</span><span>Worktops</span><span>Underfloor heating</span><span>Wet rooms</span><span>Property maintenance</span>
+    <span>Bespoke joinery</span><span>Tiling &amp; stone</span><span>Plumbing</span><span>Lighting</span><span>Worktops</span><span>Underfloor heating</span><span>Wet rooms</span><span>Property maintenance</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What I do</p>
+      <h2>A single pair of hands, from drawing to done.</h2>
+    </div>
+
+    <div class="svc-row reveal">
+      <div class="num">01</div>
+      <h3>Kitchen design &amp; fitting</h3>
+      <div class="desc">
+        Considered layouts that earn their space — cabinetry, worktops, lighting and appliances brought together into a room you actually want to cook in.
+        <ul><li>Bespoke cabinetry</li><li>Stone &amp; timber worktops</li><li>Islands</li><li>Task lighting</li></ul>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <div class="num">02</div>
+      <h3>Bathrooms &amp; wet rooms</h3>
+      <div class="desc">
+        Calm, watertight spaces with precise tiling and quiet detailing — full bathrooms, en-suites and level-access wet rooms built to last.
+        <ul><li>Full installation</li><li>Wet rooms</li><li>Precision tiling</li><li>Underfloor heating</li></ul>
+      </div>
+    </div>
+
+    <div class="svc-row reveal">
+      <div class="num">03</div>
+      <h3>Property maintenance</h3>
+      <div class="desc">
+        The wider work that keeps a home right — carpentry, repairs and finishing carried out with the same care as the showpiece rooms.
+        <ul><li>Carpentry</li><li>Repairs</li><li>Finishing</li><li>Renovation</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK GALLERY ============ -->
+<section id="work" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Selected work</p>
+      <h2>Recent kitchens &amp; bathrooms.</h2>
+    </div>
+    <div class="gallery">
+      <div class="shot lg reveal"><img src="images/work-1.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-1/1000/760'" alt="Modern kitchen with island" /><div class="cap"><div class="t">Open-plan kitchen</div><div class="s">Witney · Kitchen</div></div></div>
+      <div class="shot sm reveal"><img src="images/work-2.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-2/700/880'" alt="Walk-in shower" /><div class="cap"><div class="t">Walk-in wet room</div><div class="s">Oxford · Bathroom</div></div></div>
+      <div class="shot tall reveal"><img src="images/work-3.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-3/700/940'" alt="Family bathroom" /><div class="cap"><div class="t">Family bathroom</div><div class="s">Abingdon · Bathroom</div></div></div>
+      <div class="shot wide reveal"><img src="images/work-4.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-4/1000/640'" alt="Shaker kitchen" /><div class="cap"><div class="t">Shaker kitchen</div><div class="s">Bicester · Kitchen</div></div></div>
+      <div class="shot md reveal"><img src="images/work-5.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-5/900/600'" alt="En-suite detail" /><div class="cap"><div class="t">En-suite</div><div class="s">Banbury · Bathroom</div></div></div>
+      <div class="shot md reveal"><img src="images/work-6.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-6/900/600'" alt="Kitchen worktop detail" /><div class="cap"><div class="t">Worktop &amp; splashback</div><div class="s">Thame · Kitchen</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section>
+  <div class="wrap ba-wrap">
+    <div class="reveal">
+      <p class="eyebrow">The difference</p>
+      <h2 style="font-size:clamp(2rem,3.6vw,3rem);margin:18px 0 20px">Before, and after.</h2>
+      <p class="lead">Most jobs start with a tired, dated room. Drag the slider to see the kind of transformation a full strip-out and refit makes — same footprint, an entirely different space.</p>
+      <a href="#contact" class="btn" style="margin-top:30px">Start your project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+    <div class="ba" id="ba">
+      <img class="before" src="images/before.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-before/1200/800?grayscale'" alt="Bathroom before renovation" />
+      <img class="after" id="baAfter" src="images/after.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-after/1200/800'" alt="Bathroom after renovation" />
+      <span class="lbl b">Before</span>
+      <span class="lbl a">After</span>
+      <div class="divider" id="baDivider">
+        <div class="handle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" style="background:var(--surface)">
+  <div class="wrap about-grid">
+    <div class="portrait reveal">
+      <img src="images/conrad.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/conrad-portrait/800/1000'" alt="Conrad Crooks on site" />
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">The person behind the work</p>
+      <h2>Hello, I'm Conrad.</h2>
+      <p class="lead">Conrad Designs and Property Maintenance is a one-man operation, and that's deliberate. When you work with me, the person who quotes your kitchen is the same person who fits it — no handovers, no rotating crews, no detail lost in translation.</p>
+      <p class="lead">I take on kitchens, bathrooms and the wider maintenance that keeps an Oxfordshire home in good order. I keep my diary tight so every project gets proper attention, and I'd rather do one room beautifully than three in a hurry.</p>
+      <div class="sig">Conrad Crooks
+        <small>Founder · Conrad Designs &amp; Property Maintenance</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Four steps, no surprises.</h2>
+    </div>
+    <div class="process">
+      <div class="step reveal"><div class="num">01 — Visit</div><h4>We talk it through</h4><p>I come and see the space, listen to how you want to use it, and take proper measurements.</p></div>
+      <div class="step reveal"><div class="num">02 — Design</div><h4>A clear plan</h4><p>Layout, materials and a transparent quote, so you know exactly what you're getting and what it costs.</p></div>
+      <div class="step reveal"><div class="num">03 — Fit</div><h4>The work happens</h4><p>A clean, tidy site and steady progress, with one point of contact from first day to last.</p></div>
+      <div class="step reveal"><div class="num">04 — Finish</div><h4>Walked through</h4><p>We go through the finished room together and I don't call it done until you're happy with it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's talk about your room.</h2>
+      <p class="lead">Planning a new kitchen or bathroom in Oxfordshire — or somewhere that just needs putting right? Drop me a line or give me a call and we'll take it from there.</p>
+      <div class="contact-rows">
+        <a class="crow" href="tel:+447979822085">
+          <span class="k">Phone</span>
+          <span class="v">07979 822085</span>
+          <span class="arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a class="crow" href="mailto:conradcrooks@hotmail.co.uk">
+          <span class="k">Email</span>
+          <span class="v">conradcrooks@hotmail.co.uk</span>
+          <span class="arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <div class="crow" style="cursor:default">
+          <span class="k">Area</span>
+          <span class="v">Across Oxfordshire</span>
+          <span class="arrow"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand">
+      <b>Conrad Designs</b>
+      <span>&amp; Property Maintenance</span>
+    </a>
+    <p class="small">Kitchen &amp; bathroom design and fitting · Oxfordshire</p>
+    <p class="small">© <span id="yr"></span> Conrad Crooks. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // sticky nav background
+  const header = document.getElementById('top');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open'); links.classList.remove('open');
+  }));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i) => {
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  // before / after slider
+  (function(){
+    const ba = document.getElementById('ba');
+    const after = document.getElementById('baAfter');
+    const divider = document.getElementById('baDivider');
+    if(!ba) return;
+    let dragging = false;
+    const setPos = (clientX) => {
+      const r = ba.getBoundingClientRect();
+      let p = ((clientX - r.left) / r.width) * 100;
+      p = Math.max(2, Math.min(98, p));
+      after.style.clipPath = `inset(0 0 0 ${p}%)`;
+      divider.style.left = p + '%';
+    };
+    const start = () => dragging = true;
+    const end = () => dragging = false;
+    const move = (e) => {
+      if(!dragging) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      setPos(x);
+    };
+    ba.addEventListener('mousedown', e => { start(); setPos(e.clientX); });
+    ba.addEventListener('touchstart', e => { start(); setPos(e.touches[0].clientX); }, {passive:true});
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move, {passive:true});
+    window.addEventListener('mouseup', end);
+    window.addEventListener('touchend', end);
+  })();
+</script>
+</body>
+</html>
