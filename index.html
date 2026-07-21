@@ -151,6 +151,24 @@
   .shot.tall{grid-column:span 5;aspect-ratio:3/4}
   .shot.wide{grid-column:span 7;aspect-ratio:16/10}
 
+  /* ============ REVIEWS ============ */
+  .rating-badge{
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+    padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .rating-score{font-family:'Fraunces',serif;font-size:clamp(3rem,6vw,4.2rem);line-height:1;color:var(--ink)}
+  .rating-meta{display:flex;align-items:center;gap:10px}
+  .stars{display:inline-flex;gap:3px;color:var(--accent)}
+  .stars svg{width:22px;height:22px}
+  .rating-count{font-size:.82rem;color:var(--muted)}
+  .rating-link{
+    margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:500;
+    color:var(--ink-soft);position:relative;padding-bottom:2px;transition:color .3s;
+  }
+  .rating-link::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+  .rating-link:hover{color:var(--ink)}
+  .rating-link:hover::after{transform:scaleX(1);transform-origin:left}
+
   /* ============ BEFORE / AFTER ============ */
   .ba-wrap{display:grid;grid-template-columns:.42fr .58fr;gap:56px;align-items:center}
   .ba{position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;user-select:none;box-shadow:0 40px 80px -46px rgba(27,26,23,.5);cursor:ew-resize}
@@ -235,6 +253,8 @@
     .process{grid-template-columns:1fr}
     .hero-meta{gap:26px}
     .hero-visual .tag{left:0}
+    .rating-badge{gap:16px}
+    .rating-link{margin-left:0;flex-basis:100%}
   }
 </style>
 </head>
@@ -353,6 +373,29 @@
       <div class="shot wide reveal"><img src="images/work-4.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-4/1000/640'" alt="Shaker kitchen" /><div class="cap"><div class="t">Shaker kitchen</div><div class="s">Bicester · Kitchen</div></div></div>
       <div class="shot md reveal"><img src="images/work-5.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-5/900/600'" alt="En-suite detail" /><div class="cap"><div class="t">En-suite</div><div class="s">Banbury · Bathroom</div></div></div>
       <div class="shot md reveal"><img src="images/work-6.jpg" onerror="this.onerror=null;this.src='https://picsum.photos/seed/cd-work-6/900/600'" alt="Kitchen worktop detail" /><div class="cap"><div class="t">Worktop &amp; splashback</div><div class="s">Thame · Kitchen</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">What clients say</p>
+      <h2>Trusted across Oxfordshire.</h2>
+    </div>
+
+    <div class="rating-badge reveal">
+      <div class="rating-score">14</div>
+      <div class="rating-meta">
+        <div class="stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3v11z"/></svg>
+        </div>
+        <div class="rating-count">People recommend us on Facebook</div>
+      </div>
+      <a href="https://www.facebook.com/conradsdesigns/reviews" target="_blank" rel="noopener" class="rating-link">See all reviews
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>

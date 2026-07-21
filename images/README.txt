@@ -15,10 +15,10 @@ USE THESE EXACT NAMES (all lowercase, .jpg):
   work-2.jpg         -> Gallery: tall portrait shot (shower / wet room)
   work-3.jpg         -> Gallery: tall portrait shot (bathroom)
   work-4.jpg         -> Gallery: wide landscape shot (kitchen)
-  work-5.jpg         -> Gallery: landscape shot (en-suite / detail)
+  work-5.jpg         -> Gallery: landscape shot (en-suite / detai
   work-6.jpg         -> Gallery: landscape shot (worktop / detail)
 
-  before.jpg         -> "Before" photo for the drag-slider (landscape)
+  before.jpg         -> "Before" photo for the drag-slider (landscapework
   after.jpg          -> "After" photo of the SAME room (landscape)
                         Tip: take both from the same spot for the best effect.
 
@@ -27,7 +27,7 @@ USE THESE EXACT NAMES (all lowercase, .jpg):
 
 TIPS
 ----
-- JPG only, and keep the names exactly as above (no spaces, no capitals).
+- JPG only, and keep the names exactly as above (no spaces, no capitalsafter
 - If your phone saves photos as .HEIC, open and "Save as JPEG" first.
 - Landscape = wider than tall.  Portrait = taller than wide.
 - Aim for large, sharp photos (1000px+ wide). Good light makes a huge difference.
